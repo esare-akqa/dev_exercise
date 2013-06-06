@@ -1,5 +1,6 @@
 class Rover
   attr_accessor :coords, :deg
+  attr_reader :heading, :turn_dir
 
   def initialize(x, y, dir)
     @coords = Array.new(2)
@@ -45,5 +46,4 @@ class Rover
   def status()
     "[#{coords[0]}, #{coords[1]}], #{get_heading}"
   end
-
 end

@@ -8,12 +8,20 @@ class Rover
     @coords[0], @coords[1], @deg = x, y, set_deg(dir)
   end
 
+  def get_heading()
+    @heading.key(@deg) if @heading.has_value? (@deg)
+  end
+
   def set_deg(letter)
     @deg = @heading[letter] if @heading.has_key? letter
   end
 
   def turn(dir)
     @deg = (@deg + @turn_dir[dir]) % 360 if @turn_dir.has_key? dir
+  end
+
+  def status()
+    "[#{coords[0]}, #{coords[1]}, #{@deg}"
   end
 
 end

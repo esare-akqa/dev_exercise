@@ -63,6 +63,38 @@ describe Rover do
       2.times {@rover.turn('R')}
       @rover.deg.should == 270
     end
+  end
 
+  describe '#get_heading' do
+    it 'should return a string class' do
+      @rover.get_heading.should be_an_instance_of(String)
+    end
+
+    it 'should be "N" if we start with 90' do
+      @rover.get_heading.should == 'N'
+    end
+    it 'rover2 should be "E" if we start with 0' do
+      @rover2.get_heading.should == 'E'
+    end
+  end
+
+  describe '#status' do
+    it 'returns a string' do
+      @rover.status.should be_an_instance_of(String)
+    end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

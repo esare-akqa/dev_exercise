@@ -12,6 +12,18 @@ class Rover
     @heading.key(@deg) if @heading.has_value? (@deg)
   end
 
+  def move()
+    if @deg == 90 #north
+      @coords[1] += 1
+    elsif @deg == 0 #east
+      @coords[0] += 1
+    elsif @deg == 270 #south
+      @coords[1] -= 1
+    else #west
+      @coords[0] -= 1
+    end
+  end
+
   def set_deg(letter)
     @deg = @heading[letter] if @heading.has_key? letter
   end

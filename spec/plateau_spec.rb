@@ -15,6 +15,7 @@ describe Plateau do
   describe '#width' do
     it 'should not be nil' do
       @plateau.width.should_not equal nil
+      @plateau2.width.should_not equal nil
     end
     it 'is a Fixnum' do
       @plateau.width.should be_an_instance_of(Fixnum)
@@ -27,6 +28,7 @@ describe Plateau do
     end
     it 'should not be nil' do
       @plateau.length.should_not equal nil
+      @plateau2.length.should_not equal nil
     end
   end
 end

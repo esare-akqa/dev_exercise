@@ -28,6 +28,16 @@ class Rover
     @deg = @heading[letter] if @heading.has_key? letter
   end
 
+  def travel(inputs)
+    inputs.split('').each do |input|
+      if @turn_dir.has_key? input
+        turn(input)
+      elsif input == 'M'
+        move()
+      end
+    end
+  end
+
   def turn(dir)
     @deg = (@deg + @turn_dir[dir]) % 360 if @turn_dir.has_key? dir
   end

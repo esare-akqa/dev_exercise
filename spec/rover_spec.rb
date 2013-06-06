@@ -66,11 +66,11 @@ describe Rover do
   end
 
   describe '#get_heading' do
-    it 'should return a string class' do
+    it 'return a string class' do
       @rover.get_heading.should be_an_instance_of(String)
     end
 
-    it 'should be "N" if we start with 90' do
+    it 'be "N" if we start with 90' do
       @rover.get_heading.should == 'N'
     end
     it 'rover2 should be "E" if we start with 0' do
@@ -82,10 +82,10 @@ describe Rover do
     it 'returns a string' do
       @rover.status.should be_an_instance_of(String)
     end
-    it 'message should be: [1, 2], N' do
+    it 'message should be: [1, 2], N if rover = Rover.new(1, 2, "N")' do
       @rover.status.should == '[1, 2], N'
     end
-    it 'rover2 message should be: [3, 3], E' do
+    it 'rover2 message should be: [3, 3], E rover2 = Rover.new(3, 3, "E")' do
       @rover2.status.should == '[3, 3], E'
     end
   end
@@ -111,6 +111,29 @@ describe Rover do
       2.times {@rover2.turn('R')}
       @rover2.move()
       @rover2.coords[0].should == 2
+    end
+  end
+
+  describe '#travel' do
+    it 'given input: "LM", rover\'s new coords should be at [0, 2]' do
+      @rover.travel('LM')
+      @rover.coords.should == [0, 2]
+    end
+    it 'given input: "RRMMLMRM", rover\'s new coords should be at [2, -1]' do
+      @rover.travel('RRMMLMRM')
+      @rover.coords.should == [2, -1]
+    end
+    it 'given input: "MMMMRMMLMMM", rover\'s new coords should be at [3, 9]' do
+      @rover.travel('MMMMRMMLMMM')
+      @rover.coords.should == [3, 9]
+    end
+    it 'given input: "LMLMLMLMM", rover\'s new coords should be at [1, 3]' do
+      @rover.travel('LMLMLMLMM')
+      @rover.coords.should == [1, 3]
+    end
+    it 'given input: "MMRMMRMRRM", rover2\'s new coords should be at [5, 1]' do
+      @rover2.travel('MMRMMRMRRM')
+      @rover2.coords.should == [5, 1]
     end
   end
 end

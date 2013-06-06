@@ -68,12 +68,29 @@ describe Game do
   end
 
   describe '#start' do
-    it 'should contains 2 rover objects' do
+    before :each do
       @game.start()
+    end
+    it 'should contains 2 rover objects' do
       @game.rovers.count.should == 2
     end
+    it 'last rover should equal to 2nd rover' do
+      @game.rovers.last.should equal @game.rovers[1]
+    end
+    it 'first rover should not equal to last rover' do
+      @game.rovers.last.should_not equal @game.rovers[0]
+    end
+    it 'rover status should equal "[1, 2], N"' do
+      @game.rovers.first.status.should == '[1, 3], N'
+    end
+    it 'rover status should not equal "[4, 8], E"' do
+      @game.rovers.first.status.should_not == '[4, 8], E'
+    end
+    it 'rover2 status should equal "[5, 1], E"' do
+      @game.rovers.last.status.should == '[5, 1], E'
+    end
+    it 'rover2 status should not equal "[-1, 4], W"' do
+      @game.rovers.first.status.should_not == '[-1, 4], W'
+    end
   end
-
-
-
 end

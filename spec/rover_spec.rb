@@ -82,6 +82,12 @@ describe Rover do
     it 'returns a string' do
       @rover.status.should be_an_instance_of(String)
     end
+    it 'message should be: [1, 2], N' do
+      @rover.status.should == '[1, 2], N'
+    end
+    it 'rover2 message should be: [3, 3], E' do
+      @rover2.status.should == '[3, 3], E'
+    end
   end
 end
 

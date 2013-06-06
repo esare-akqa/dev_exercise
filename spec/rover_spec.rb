@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Rover do
   before :each do
-    @rover = Rover.new('1 2 N')
+    @rover = Rover.new(1, 2, 'N')
+    @rover2 = Rover.new(3, 3, 'E')
   end
 
   describe '#new' do
@@ -25,5 +26,43 @@ describe Rover do
     it 'should be a Fixnum' do
       @rover.deg.should be_an_instance_of(Fixnum)
     end
+    it 'is 90 deg if we start with North' do
+      @rover.deg.should == 90
+    end
+  end
+
+  describe '#turn' do
+    it 'L should add 90 degs to deg' do
+      @rover.turn('L')
+      @rover.deg.should == 180
+    end
+
+    it 'R should subtract 90 deg to deg' do
+      @rover.turn('R')
+      @rover.deg.should == 0
+    end
+
+    it 'calling turn("L") or turn("R") 4 times should result with the @deg that we start with' do
+      4.times {@rover.turn('L')}
+      @rover.deg.should == 90
+      4.times {@rover.turn('R')}
+      @rover.deg.should == 90
+    end
+
+    it 'calling turn("L") 3 times should set @deg to 0 if we start with North' do
+      3.times {@rover.turn('L')}
+      @rover.deg.should == 0
+    end
+
+    it 'calling turn("R") 3 times should set @deg to 180 if we start with North' do
+      3.times {@rover.turn('R')}
+      @rover.deg.should == 180
+    end
+
+    it 'calling turn("R") 2 times should set @deg to 270 if we start with North' do
+      2.times {@rover.turn('R')}
+      @rover.deg.should == 270
+    end
+
   end
 end

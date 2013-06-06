@@ -10,4 +10,20 @@ describe Rover do
       @rover.should be_an_instance_of(Rover)
     end
   end
+
+  describe '#coord' do
+    it 'should be an array' do
+      @rover.coords.should be_an_instance_of(Array)
+    end
+
+    it 'should be an array of integers' do
+      @rover.coords.each {|coord| coord.should be_an_instance_of(Fixnum)}
+    end
+  end
+
+  describe '#deg' do
+    it 'should be a Fixnum' do
+      @rover.deg.should be_an_instance_of(Fixnum)
+    end
+  end
 end

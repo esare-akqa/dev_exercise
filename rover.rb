@@ -1,11 +1,11 @@
 class Rover
-  attr_accessor :coord, :deg
+  attr_accessor :coords, :deg
 
   def initialize(input)
-    @coord = Array.new(2)
+    @coords = Array.new(2)
     @heading = {'N' =>  90, 'E' =>  0, 'S' =>  270, 'W' =>  180}
     input = input.split(' ')
-    coord[0], coord[1], @deg = input[0], input[1], set_deg(input[2])
+    coords[0], coords[1], @deg = input[0].to_i, input[1].to_i, set_deg(input[2])
   end
 
   def set_deg(input)

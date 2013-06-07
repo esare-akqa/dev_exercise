@@ -18,8 +18,8 @@ class Game
         @rovers << Rover.new(x, y, heading)
         @current_rover = @rovers.last
       elsif contains_digits(input)
-        width, height = input.split(' ')
-        @plateau = Plateau.new(width, height)
+        width, length = input.split(' ')
+        @plateau = Plateau.new(width, length)
       elsif contains_letters(input)
         @current_rover.travel(input)
       end

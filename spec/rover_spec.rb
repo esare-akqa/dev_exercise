@@ -92,24 +92,24 @@ describe Rover do
 
   describe '#move' do
     it 'increments @coords[1] by 1 if @deg == 90 with @coords = [1, 2]' do
-      @rover.move()
+      @rover.move
       @rover.coords[1].should == 3
     end
 
     it 'decrements @coords[1] by 1 if @deg == 270 with @coords = [1, 2]' do
       2.times {@rover.turn('L')}
-      @rover.move()
+      @rover.move
       @rover.coords[1].should == 1
     end
 
     it 'increments @coords[0] by 1 if @deg == 0 with @coords = [3, 3]' do
-      @rover2.move()
+      @rover2.move
       @rover2.coords[0].should == 4
     end
 
     it 'decrements @coords[0] by 1 if @deg == 180 with @coords = [3, 3]' do
       2.times {@rover2.turn('R')}
-      @rover2.move()
+      @rover2.move
       @rover2.coords[0].should == 2
     end
   end

@@ -9,11 +9,11 @@ class Rover
     @coords[0], @coords[1], @deg = x, y, set_deg(dir)
   end
 
-  def get_heading()
+  def get_heading
     @heading.key(@deg) if @heading.has_value? (@deg)
   end
 
-  def move()
+  def move
     if @deg == 90 #north
       @coords[1] += 1
     elsif @deg == 0 #east
@@ -34,7 +34,7 @@ class Rover
       if @turn_dir.has_key? input
         turn(input)
       elsif input == 'M'
-        move()
+        move
       end
     end
   end
@@ -43,7 +43,7 @@ class Rover
     @deg = (@deg + @turn_dir[dir]) % 360 if @turn_dir.has_key? dir
   end
 
-  def status()
+  def status
     "[#{coords[0]}, #{coords[1]}], #{get_heading}"
   end
 end

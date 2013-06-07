@@ -29,35 +29,35 @@ describe Game do
     end
   end
 
-  describe '#contains_digits' do
+  describe '#contains_digits?' do
     it 'returns a True_class or False_class' do
-      @game.contains_digits(@test_input[0]).should be_an_instance_of(TrueClass)
-      @game.contains_digits(@test_input[2]).should be_an_instance_of(FalseClass)
+      @game.contains_digits?(@test_input[0]).should be_an_instance_of(TrueClass)
+      @game.contains_digits?(@test_input[2]).should be_an_instance_of(FalseClass)
     end
     it 'returns true if input is "5 5"' do
-      @game.contains_digits(@test_input[0]).should == true
+      @game.contains_digits?(@test_input[0]).should == true
     end
     it 'returns true if input is "1 2 N"' do
-      @game.contains_digits(@test_input[1]).should == true
+      @game.contains_digits?(@test_input[1]).should == true
     end
     it 'returns false if input is "LMLMLMLMM"' do
-      @game.contains_digits(@test_input[2]).should == false
+      @game.contains_digits?(@test_input[2]).should == false
     end
   end
 
-  describe '#contains_letters' do
+  describe '#contains_letters?' do
     it 'returns a True_class or False_class' do
-      @game.contains_letters(@test_input[0]).should be_an_instance_of(FalseClass)
-      @game.contains_letters(@test_input[2]).should be_an_instance_of(TrueClass)
+      @game.contains_letters?(@test_input[0]).should be_an_instance_of(FalseClass)
+      @game.contains_letters?(@test_input[2]).should be_an_instance_of(TrueClass)
     end
     it 'returns false if input is "5 5"' do
-      @game.contains_letters(@test_input[0]).should == false
+      @game.contains_letters?(@test_input[0]).should == false
     end
     it 'returns true if input is "1 2 N"' do
-      @game.contains_letters(@test_input[1]).should == true
+      @game.contains_letters?(@test_input[1]).should == true
     end
     it 'returns true if input is "LMLMLMLMM"' do
-      @game.contains_letters(@test_input[2]).should == true
+      @game.contains_letters?(@test_input[2]).should == true
     end
   end
 
@@ -69,7 +69,7 @@ describe Game do
 
   describe '#start' do
     before :each do
-      @game.start()
+      @game.start
     end
     it 'should contains 2 rover objects' do
       @game.rovers.count.should == 2

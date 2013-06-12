@@ -9,6 +9,11 @@ class Rover
     @coords[0], @coords[1], @deg = x, y, set_deg(dir)
   end
 
+  def self.valid_rover_input?(str)
+    result = str =~ /^[[:digit:]]+\ [[:digit:]]+\ [NESW]$/
+    result = !result.nil? ? true: false
+  end
+
   def get_heading
     @heading.key(@deg) if @heading.has_value? (@deg)
   end

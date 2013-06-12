@@ -48,4 +48,9 @@ class Game
     result = !result.nil? ? true: false
   end
 
+  def valid_rover_input?(str)
+    result = str =~ /^[[:digit:]]+\ [[:digit:]]+\ [NESW]$/
+    result = !result.nil? ? true: false
+  end
+
 end

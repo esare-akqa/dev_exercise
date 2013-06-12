@@ -127,9 +127,17 @@ describe Game do
     it "returns true if @plateau_input5 = '72678236482364 23462387469872698476298364978236987469'" do
       @game.valid_plateau_input?(@plateau_input5).should == true
     end
-
   end
 
+  describe '#valid_rover_input?' do
+    before :each do
+      @rover_input = "1 2 S"
+    end
+
+    it "returns true if @rover_input = '1 2 S'" do
+      @game.valid_rover_input?(@rover_input).should == true
+    end
+  end
 
 
 end

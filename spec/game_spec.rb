@@ -107,23 +107,22 @@ describe Game do
       @plateau_input4 = "828347629387498237498023 76123745263452683546253842    "
       @plateau_input5 = "72678236482364 23462387469872698476298364978236987469"
     end
-
+    it 'returns a True_class or False_class' do
+      @game.valid_plateau_input?(@plateau_input).should be_an_instance_of(FalseClass)
+      @game.valid_plateau_input?(@plateau_input3).should be_an_instance_of(TrueClass)
+    end
     it 'returns false if @plateau_input = "13 20 \n"' do
       @game.valid_plateau_input?(@plateau_input).should == false
     end
-
     it 'returns false if @plateau_input2 = "4 6 \n"' do
       @game.valid_plateau_input?(@plateau_input2).should == false
     end
-
     it "returns true if @plateau_input3 = '8 6'" do
       @game.valid_plateau_input?(@plateau_input3).should == true
     end
-
     it "returns false if @plateau_input4 has trailing white spaces with value = '828347629387498237498023 76123745263452683546253842     '" do
       @game.valid_plateau_input?(@plateau_input4).should == false
     end
-
     it "returns true if @plateau_input5 = '72678236482364 23462387469872698476298364978236987469'" do
       @game.valid_plateau_input?(@plateau_input5).should == true
     end
@@ -132,10 +131,21 @@ describe Game do
   describe '#valid_rover_input?' do
     before :each do
       @rover_input = "1 2 S"
+      @rover_input2 = "10      948 E"
+      @rover_input3 = "82 37 X"
     end
-
+    it 'returns a True_class or False_class' do
+      @game.contains_letters?(@test_input[0]).should be_an_instance_of(FalseClass)
+      @game.contains_letters?(@test_input[2]).should be_an_instance_of(TrueClass)
+    end
     it "returns true if @rover_input = '1 2 S'" do
       @game.valid_rover_input?(@rover_input).should == true
+    end
+    it "returns false if @rover_input2 = '10      948 E'" do
+      @game.valid_rover_input?(@rover_input2).should == false
+    end
+    it "returns false if @rover_input3 = '82 37 X'" do
+      @game.valid_rover_input?(@rover_input3).should == false
     end
   end
 

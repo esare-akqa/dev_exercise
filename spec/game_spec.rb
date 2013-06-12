@@ -99,38 +99,6 @@ describe Game do
     # @game.input.length.should == 0
   end
 
-  describe '#valid_rover_input?' do
-    before :each do
-      @rover_input = "1 2 S"
-      @rover_input2 = "10      948 E"
-      @rover_input3 = "82 37 X"
-      @rover_input4 = "83838 446 SW"
-      @rover_input5 = "83448 223 E                      "
-      @rover_input6 = "74298472089 2384738 S"
-    end
-    it 'returns a True_class or False_class' do
-      @game.contains_letters?(@test_input[0]).should be_an_instance_of(FalseClass)
-      @game.contains_letters?(@test_input[2]).should be_an_instance_of(TrueClass)
-    end
-    it "returns true if @rover_input = '1 2 S'" do
-      @game.valid_rover_input?(@rover_input).should == true
-    end
-    it "returns false if @rover_input2 = '10      948 E'" do
-      @game.valid_rover_input?(@rover_input2).should == false
-    end
-    it "returns false if @rover_input3 = '82 37 X'" do
-      @game.valid_rover_input?(@rover_input3).should == false
-    end
-    it "returns false if @rover_input4 = '83838 446 SW'" do
-      @game.valid_rover_input?(@rover_input4).should == false
-    end
-    it "returns false if @rover_input5 has trailing spaces with value = '83448 223 E                      ' " do
-      @game.valid_rover_input?(@rover_input5).should == false
-    end
-    it "returns true if @rover_input6 = '74298472089 2384738 S'" do
-      @game.valid_rover_input?(@rover_input6).should == true
-    end
-  end
 
 
 end

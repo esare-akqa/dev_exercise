@@ -14,6 +14,11 @@ class Rover
     result = !result.nil? ? true: false
   end
 
+  def self.valid_travel_input?(str)
+    result = str =~ /^[LRM]+$/
+    result = !result.nil? ? true: false
+  end
+
   def get_heading
     @heading.key(@deg) if @heading.has_value? (@deg)
   end

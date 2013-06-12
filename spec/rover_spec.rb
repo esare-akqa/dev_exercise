@@ -146,7 +146,7 @@ describe Rover do
       @rover_input5 = "83448 223 E                      "
       @rover_input6 = "74298472089 2384738 S"
     end
-    it 'returns a True_class or False_class' do
+    it 'returns a TrueClass or FalseClass' do
       Rover.valid_rover_input?(@rover_input2).should be_an_instance_of(FalseClass)
       Rover.valid_rover_input?(@rover_input).should be_an_instance_of(TrueClass)
     end
@@ -167,6 +167,23 @@ describe Rover do
     end
     it "returns true if @rover_input6 = '74298472089 2384738 S'" do
       Rover.valid_rover_input?(@rover_input6).should == true
+    end
+  end
+
+  describe "Rover#valid_travel_input?" do
+    before :each do
+      @travel_input = "MRML"
+      @travel_input2 = "R M L L M"
+      @travel_input3 = "RRRR      LLL   MMRL"
+    end
+
+    it 'returns a TrueClass or FalseClass' do
+      Rover.valid_travel_input?(@travel_input).should == true
+      Rover.valid_travel_input?(@travel_input2).should == false
+    end
+
+    it "returns false if it has any space char given @travel_input3 = 'RRRR      LLL   MMRL'" do
+      Rover.valid_travel_input?(@travel_input3).should == false
     end
   end
 

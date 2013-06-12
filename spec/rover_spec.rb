@@ -174,16 +174,31 @@ describe Rover do
     before :each do
       @travel_input = "MRML"
       @travel_input2 = "R M L L M"
-      @travel_input3 = "RRRR      LLL   MMRL"
+      @travel_input3 = "RRRR      LLL   MMRL                   "
+      @travel_input4 = "XRMJSAQER"
+      @travel_input5 = "731aie;"
+      @travel_input6 = "rmlllmmrl"
+      @travel_input7 = "LRMLLRMRLRMRLMRLRMRMMM"
     end
 
     it 'returns a TrueClass or FalseClass' do
       Rover.valid_travel_input?(@travel_input).should == true
       Rover.valid_travel_input?(@travel_input2).should == false
     end
-
-    it "returns false if it has any space char given @travel_input3 = 'RRRR      LLL   MMRL'" do
+    it "returns false if it has any space char given @travel_input3 = 'RRRR      LLL   MMRL                   '" do
       Rover.valid_travel_input?(@travel_input3).should == false
+    end
+    it "returns false if @travel_input4 = 'XRMJSAQER'" do
+      Rover.valid_travel_input?(@travel_input4).should == false
+    end
+    it "returns false if @travel_input5 = '731aie;'" do
+      Rover.valid_travel_input?(@travel_input5).should == false
+    end
+    it "returns false if it is all lowercase given @travel_input6 = 'rmlllmmrl'" do
+      Rover.valid_travel_input?(@travel_input6).should == false
+    end
+    it "returns true if @travel_input7 = 'LRMLLRMRLRMRLMRLRMRMMM'" do
+      Rover.valid_travel_input?(@travel_input7).should == true
     end
   end
 

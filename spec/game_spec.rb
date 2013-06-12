@@ -93,4 +93,29 @@ describe Game do
       @game.rovers.first.status.should_not == '[-1, 4], W'
     end
   end
+
+  describe '#get_input' do
+    # it "length of input array should equal to 0"
+    # @game.input.length.should == 0
+  end
+
+  describe '#valid_plateau_input?' do
+    before :each do
+      @plateau_input = "13 20 \n"
+      @plateau_input2 = "4 6 \n"
+      @plateau_input3 = "8 6"
+    end
+
+    it "returns false if @plateau_input = '13 20 \n'" do
+      @game.valid_plateau_input?(@plateau_input).should == false
+    end
+
+    it "returns false if @plateau_input2 = '4 6 \n'" do
+      @game.valid_plateau_input?(@plateau_input2).should == false
+    end
+
+  end
+
+
+
 end

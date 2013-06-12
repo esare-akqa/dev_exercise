@@ -36,4 +36,16 @@ class Game
     result = !result.nil? ? true : false
   end
 
+  def get_plateau_input(prompt)
+    # done = false
+    # while !done do
+
+    # end
+  end
+
+  def valid_plateau_input?(str)
+    result = str =~ /^[[:digit:]]+\ [[:digit:]]+$/
+    result = !result.nil? ? true: false
+  end
+
 end

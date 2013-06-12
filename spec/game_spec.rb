@@ -104,14 +104,28 @@ describe Game do
       @plateau_input = "13 20 \n"
       @plateau_input2 = "4 6 \n"
       @plateau_input3 = "8 6"
+      @plateau_input4 = "828347629387498237498023 76123745263452683546253842    "
+      @plateau_input5 = "72678236482364 23462387469872698476298364978236987469"
     end
 
-    it "returns false if @plateau_input = '13 20 \n'" do
+    it 'returns false if @plateau_input = "13 20 \n"' do
       @game.valid_plateau_input?(@plateau_input).should == false
     end
 
-    it "returns false if @plateau_input2 = '4 6 \n'" do
+    it 'returns false if @plateau_input2 = "4 6 \n"' do
       @game.valid_plateau_input?(@plateau_input2).should == false
+    end
+
+    it "returns true if @plateau_input3 = '8 6'" do
+      @game.valid_plateau_input?(@plateau_input3).should == true
+    end
+
+    it "returns false if @plateau_input4 has trailing white spaces with value = '828347629387498237498023 76123745263452683546253842     '" do
+      @game.valid_plateau_input?(@plateau_input4).should == false
+    end
+
+    it "returns true if @plateau_input5 = '72678236482364 23462387469872698476298364978236987469'" do
+      @game.valid_plateau_input?(@plateau_input5).should == true
     end
 
   end

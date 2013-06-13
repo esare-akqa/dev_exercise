@@ -1,15 +1,22 @@
 class Game
   attr_accessor :plateau, :rovers, :inputs, :current_rover
 
-  def initialize()
-    @rovers = Array.new
+  def initialize
+    @rovers = []
+    @inputs = []
     @plateau = nil
     @current_rover = nil
-    @inputs = %q{5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM\n}
+    # @inputs = %q{5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM\n}
   end
 
   def start
-    @inputs.split('\n').each do |input|
+    @inputs << get_plateau_input
+    @inputs << get_rover_input
+    @inputs << get_rover_travel_input
+    @inputs << get_rover_input
+    @inputs << get_rover_travel_input
+
+    @inputs.each do |input|
       if contains_digits?(input) && contains_letters?(input)
         result = input.split(' ')
         x = result[0].to_i

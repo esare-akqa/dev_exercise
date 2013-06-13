@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Game do
   before :each do
-    @game = Game.new()
+    @game = Game.new
     @inputs = %q{5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM\n}
-    @test_input = Array.new
+    @test_input = []
     @inputs.split('\n').each {|input| @test_input << input}
   end
 
@@ -24,8 +24,11 @@ describe Game do
   end
 
   describe '#inputs' do
-    it 'is an instance of String' do
-      @game.inputs.should be_an_instance_of(String)
+    it 'is an instance of Array' do
+      @game.inputs.should be_an_instance_of(Array)
+    end
+    it 'starts with a length of 0 items' do
+      @game.inputs.count.should == 0
     end
   end
 
@@ -69,6 +72,16 @@ describe Game do
 
   describe '#start' do
     before :each do
+      @plateau_input = "5 5 \n"
+      @rover1_input = "1 2 N\n"
+      @rover1_move_input = "LMLMLMLMM\n"
+      @rover2_input = "3 3 E\n"
+      @rover2_move_input = "MMRMMRMRRM\n"
+      @game.stub(:gets).and_return(@plateau_input,
+                                   @rover1_input,
+                                   @rover1_move_input,
+                                   @rover2_input,
+                                   @rover2_move_input)
       @game.start
     end
     it 'should contains 2 rover objects' do
@@ -80,16 +93,16 @@ describe Game do
     it 'first rover should not equal to last rover' do
       @game.rovers.last.should_not equal @game.rovers[0]
     end
-    it 'rover status should equal "[1, 2], N"' do
+    it 'first rover status should equal "[1, 3], N"' do
       @game.rovers.first.status.should == '[1, 3], N'
     end
-    it 'rover status should not equal "[4, 8], E"' do
+    it 'first rover status should not equal "[4, 8], E"' do
       @game.rovers.first.status.should_not == '[4, 8], E'
     end
-    it 'rover2 status should equal "[5, 1], E"' do
+    it 'second rover status should equal "[5, 1], E"' do
       @game.rovers.last.status.should == '[5, 1], E'
     end
-    it 'rover2 status should not equal "[-1, 4], W"' do
+    it 'second rover status should not equal "[-1, 4], W"' do
       @game.rovers.first.status.should_not == '[-1, 4], W'
     end
   end

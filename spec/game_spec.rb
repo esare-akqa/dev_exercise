@@ -94,9 +94,31 @@ describe Game do
     end
   end
 
-  describe '#get_input' do
-    # it "length of input array should equal to 0"
-    # @game.input.length.should == 0
+  describe '#get_plateau_input' do
+    it 'returns an instance of String' do
+      @game.stub(:gets).and_return("20 5\n")
+      @game.get_plateau_input.should be_an_instance_of String
+    end
+    it "raises RuntimeError if input is not valid" do
+      # @game.stub(:gets).and_return("asd;lkfjasld;kfjalsd;fj")
+      # @game.stub(:get_plateau_input).should raise_error(RuntimeError)
+      # @game.get_plateau_input.should raise_error(RuntimeError)
+      # expect { @game.get_plateau_input }.to raise_error(RuntimeError)
+    end
+
+    it "returns input if input is valid" do
+      @game.stub(:gets).and_return("8798 35\n")
+      @game.get_plateau_input.should == "8798 35"
+      # @game.get_plateau_input.should == ""
+    end
+  end
+
+  describe "#test_error" do
+    it "raises RunTimeError" do
+      expect { @game.test_error }.to raise_error(RuntimeError)
+      # @game.stub!(:test_error).should raise_error(RuntimeError)
+      # @game.test_error.and_raise(RuntimeError)
+    end
   end
 
 

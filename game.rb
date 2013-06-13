@@ -36,11 +36,35 @@ class Game
     result = !result.nil? ? true : false
   end
 
-  def get_plateau_input(prompt)
-    # done = false
-    # while !done do
-
-    # end
+  def get_plateau_input
+    prompt = "Please enter plateau coordinates with 2 digits separated by a space. Ex: '5 17'"
+    begin
+      puts prompt
+      input = gets.chomp.strip
+      raise 'Input does not match requirements' if !Plateau.valid_plateau_input?(input)
+    rescue RuntimeError => e
+      puts "#{ e }"
+      retry
+    else
+      input
+    end
   end
 
+  def get_rover_input
+    prompt = prompt = "Please enter Rover coordinates with 2 digits separated by a space. Ex: '5 17'"
+    begin
+      puts prompt
+      input = gets.chomp.strip
+      raise 'Input does not match requirements' if !Rover.valid_rover_input?(input)
+    rescue RuntimeError => e
+      puts "#{ e }"
+      retry
+    else
+      input
+    end
+  end
+
+  def test_error
+    raise RuntimeError
+  end
 end

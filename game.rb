@@ -51,7 +51,7 @@ class Game
   end
 
   def get_rover_input
-    prompt = prompt = "Please enter Rover coordinates with 2 digits separated by a space. Ex: '5 17'"
+    prompt = "Please enter Rover coordinates and heading with 2 positive integers and either N|E|S|W for heading. Ex: '5 17 E'"
     begin
       puts prompt
       input = gets.chomp.strip

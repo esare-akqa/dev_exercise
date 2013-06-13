@@ -100,7 +100,11 @@ describe Game do
       @game.get_plateau_input.should be_an_instance_of String
     end
     it "raises RuntimeError if input is not valid" do
+      # TODO: find out how to test for raising exception inside a method
       # @game.stub(:gets).and_return("asd;lkfjasld;kfjalsd;fj")
+      # expect { @game.get_plateau_input }.to raise_error(RuntimeError)
+      # @game.stub(:gets).and_return("8798 35")
+      # @game.get_plateau_input.should == "8798 35"
       # @game.stub(:get_plateau_input).should raise_error(RuntimeError)
       # @game.get_plateau_input.should raise_error(RuntimeError)
       # expect { @game.get_plateau_input }.to raise_error(RuntimeError)
@@ -109,7 +113,22 @@ describe Game do
     it "returns input if input is valid" do
       @game.stub(:gets).and_return("8798 35\n")
       @game.get_plateau_input.should == "8798 35"
-      # @game.get_plateau_input.should == ""
+    end
+  end
+
+  describe '#get_rover_input' do
+    before :each do
+      @rover_input = "28 50 W"
+      @rover_input2 = "78 49 E"
+    end
+
+    it 'returns an instance of String' do
+      @game.stub(:gets).and_return("28 50 W\n")
+      @game.get_rover_input.should be_an_instance_of String
+    end
+    it 'returns input if input is valid' do
+      @game.stub(:gets).and_return("78 49 E\n")
+      @game.get_rover_input.should == @rover_input2
     end
   end
 

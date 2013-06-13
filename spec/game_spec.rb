@@ -132,6 +132,22 @@ describe Game do
     end
   end
 
+  describe '#get_rover_travel_input' do
+    before :each do
+      @rover_travel_input = "MMMRMLRRRM\n"
+      @rover_travel_input2 = "RRMLMRM"
+    end
+
+    it 'returns an instance of String' do
+      @game.stub(:gets).and_return("MMMRMLRRRM\n")
+      @game.get_rover_travel_input.should be_an_instance_of String
+    end
+    it 'returns input if input is valid' do
+      @game.stub(:gets).and_return("RRMLMRM\n")
+      @game.get_rover_travel_input.should == @rover_travel_input2
+    end
+  end
+
   describe "#test_error" do
     it "raises RunTimeError" do
       expect { @game.test_error }.to raise_error(RuntimeError)

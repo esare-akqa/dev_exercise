@@ -51,11 +51,25 @@ class Game
   end
 
   def get_rover_input
-    prompt = "Please enter Rover coordinates and heading with 2 positive integers and either N|E|S|W for heading. Ex: '5 17 E'"
+    prompt = "Please enter Rover coordinates & heading with 2 positive integers and either N|E|S|W for heading each separated by a space. Ex: '89 12 E'"
     begin
       puts prompt
       input = gets.chomp.strip
       raise 'Input does not match requirements' if !Rover.valid_rover_input?(input)
+    rescue RuntimeError => e
+      puts "#{ e }"
+      retry
+    else
+      input
+    end
+  end
+
+  def get_rover_travel_input
+    prompt = "Please enter Rover travel inputs with L/R for left/right turn and M to move one coordinate. Ex: 'LMRRMMLM'"
+    begin
+      puts prompt
+      input = gets.chomp.strip
+      raise 'Input does not match requirements' if !Rover.valid_travel_input?(input)
     rescue RuntimeError => e
       puts "#{ e }"
       retry

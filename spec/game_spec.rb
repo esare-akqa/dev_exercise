@@ -170,6 +170,20 @@ describe Game do
     end
   end
 
+  describe '#prompt_user_input' do
+    before :each do
+      @prompt = "user prompt"
+    end
+    it 'should return input string minus newline' do
+      @game.stub(:gets).and_return("MMRMLLLMR\n")
+      @game.prompt_user_input(@prompt).should == "MMRMLLLMR"
+    end
+    it 'not return a different string from the original input' do
+      @game.stub(:gets).and_return("5 5 N\n")
+      @game.prompt_user_input(@prompt).should_not == "9 0 E"
+    end
+  end
+
   describe "#test_error" do
     it "raises RunTimeError" do
       expect { @game.test_error }.to raise_error(RuntimeError)

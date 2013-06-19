@@ -86,6 +86,12 @@ class Game
     end
   end
 
+  def prompt_user_input(prompt)
+    puts prompt
+    input = gets.chomp.strip
+    input
+  end
+
   def test_error
     raise RuntimeError
   end

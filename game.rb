@@ -1,5 +1,5 @@
 class Game
-  attr_accessor :plateau, :rovers, :inputs, :current_rover
+  attr_reader :plateau, :rovers, :inputs, :current_rover
 
   def initialize
     @rovers = []

@@ -34,13 +34,15 @@ class Game
   end
 
   def contains_digits?(str)
-    result = str =~ /\d/
-    result = !result.nil? ? true : false
+    !(str =~ /[[:digit:]]/).nil?
+    # result = str =~ /\d/
+    # result = !result.nil? ? true : false
   end
 
   def contains_letters?(str)
-    result = str =~ /[[:alpha:]]/
-    result = !result.nil? ? true : false
+    !(str =~ /[[:alpha:]]/).nil?
+    # result = str =~ /[[:alpha:]]/
+    # result = !result.nil? ? true : false
   end
 
   def get_plateau_input

@@ -2,12 +2,14 @@ class Rover
   attr_accessor :coords, :deg
   attr_reader :heading, :turn_dir
 
-  def initialize(x, y, dir)
+  def initialize(x, y, dir, plateau)
     @coords = []
+    @last_coords = []
     @heading = {:N =>  90, :E =>  0, :S =>  270, :W =>  180}
     @turn_dir = {:L => 90, :R => -90}
     @coords[0], @coords[1] = x, y
     @deg = set_deg(dir.to_sym)
+    @plateau = plateau
   end
 
   def self.valid_rover_input?(str)
@@ -39,6 +41,7 @@ class Rover
   end
 
   def travel(inputs)
+    @last_coords = Array.new(@coords)
     inputs.split('').each do |input|
       input = input.to_sym
       if @turn_dir.has_key? input

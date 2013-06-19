@@ -25,10 +25,19 @@ describe Game do
 
   describe '#inputs' do
     it 'is an instance of Array' do
-      @game.inputs.should be_an_instance_of(Array)
+      @game.inputs.should be_an_instance_of(Hash)
     end
     it 'starts with a length of 0 items' do
       @game.inputs.count.should == 0
+    end
+  end
+
+  describe '#prompts' do
+    it 'is an instance of Hash' do
+      @game.prompts.should be_an_instance_of(Hash)
+    end
+    it 'has 3 items' do
+      @game.prompts.count.should == 3
     end
   end
 

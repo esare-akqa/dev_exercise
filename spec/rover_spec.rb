@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Rover do
   before :each do
-    @rover = Rover.new(1, 2, 'N')
-    @rover2 = Rover.new(3, 3, 'E')
+    @plateau = Plateau.new(5, 5)
+    @rover = Rover.new(1, 2, 'N', @plateau)
+    @rover2 = Rover.new(3, 3, 'E', @plateau)
   end
 
   describe '#new' do

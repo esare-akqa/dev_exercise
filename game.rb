@@ -1,20 +1,23 @@
 class Game
-  attr_reader :plateau, :rovers, :inputs, :current_rover
+  attr_reader :plateau, :rovers, :inputs, :current_rover, :prompts
 
   def initialize
     @rovers = []
-    @inputs = []
+    @inputs = {}
     @plateau = nil
     @current_rover = nil
+    @prompts = {'plateau_prompt' => "Please enter plateau coordinates with 2 digits separated by a space. Ex: '5 17'",
+                'rover_input_prompt' => "Please enter Rover coordinates & heading with 2 positive integers and either N|E|S|W for heading each separated by a space. Ex: '89 12 E'",
+                'rover_travel_prompt' => "Please enter Rover travel inputs with L/R for left/right turn and M to move one coordinate. Ex: 'LMRRMMLM'"}
     # @inputs = %q{5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM\n}
   end
 
   def start
-    @inputs << get_plateau_input
-    @inputs << get_rover_input
-    @inputs << get_rover_travel_input
-    @inputs << get_rover_input
-    @inputs << get_rover_travel_input
+    @inputs['plateau_input'] == get_plateau_input
+    @inputs['rover1_input'] == get_rover_input
+    @inputs['rover1_travel_input'] == get_rover_travel_input
+    @inputs['rover2_input'] == get_rover_input
+    @inputs['rover2_travel_input'] == get_rover_travel_input
 
     @inputs.each do |input|
       if contains_digits?(input) && contains_letters?(input)
@@ -22,7 +25,7 @@ class Game
         x = result[0].to_i
         y = result[1].to_i
         heading = result[2]
-        @rovers << Rover.new(x, y, heading)
+        @rovers << Rover.new(x, y, heading, @plateau)
         @current_rover = @rovers.last
       elsif contains_digits?(input)
         width, length = input.split(' ')

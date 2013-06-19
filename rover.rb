@@ -11,13 +11,11 @@ class Rover
   end
 
   def self.valid_rover_input?(str)
-    result = str =~ /^[[:digit:]]+\ [[:digit:]]+\ [NESW]$/
-    result = !result.nil? ? true: false
+    !(str =~ /^[[:digit:]]+\ [[:digit:]]+\ [NESW]$/).nil?
   end
 
   def self.valid_travel_input?(str)
-    result = str =~ /^[LRM]+$/
-    result = !result.nil? ? true: false
+    !(str =~ /^[LRM]+$/).nil?
   end
 
   def get_heading

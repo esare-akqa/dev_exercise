@@ -6,7 +6,6 @@ class Plateau
   end
 
   def self.valid_plateau_input?(str)
-    result = str =~ /^[[:digit:]]+\ [[:digit:]]+$/
-    result = !result.nil? ? true: false
+    !(str =~ /^[[:digit:]]+\ [[:digit:]]+$/).nil?
   end
 end

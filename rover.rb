@@ -55,6 +55,6 @@ class Rover
   end
 
   def status
-    "[#{coords[0]}, #{coords[1]}], #{get_heading}"
+    "[#{ coords[0] }, #{ coords[1] }], #{ get_heading }"
   end
 end

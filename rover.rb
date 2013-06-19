@@ -3,10 +3,11 @@ class Rover
   attr_reader :heading, :turn_dir
 
   def initialize(x, y, dir)
-    @coords = Array.new(2)
+    @coords = []
     @heading = {'N' =>  90, 'E' =>  0, 'S' =>  270, 'W' =>  180}
     @turn_dir = {'L' => 90, 'R' => -90}
-    @coords[0], @coords[1], @deg = x, y, set_deg(dir)
+    @coords[0], @coords[1] = x, y
+    @deg = set_deg(dir)
   end
 
   def self.valid_rover_input?(str)

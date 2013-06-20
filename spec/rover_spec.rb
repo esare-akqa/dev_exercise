@@ -79,6 +79,22 @@ describe Rover do
     end
   end
 
+  describe '#is_going_out_of_bounds?' do
+    before :each do
+      @plateau = Plateau.new(5, 5)
+      @rover = Rover.new(0, 0, 'S', @plateau)
+      @rover2 = Rover.new(5, 5, 'E', @plateau)
+      # @rover3 = Rover.new(5, 5, 'E', @plateau)
+    end
+
+    it 'returns a TrueClass or FalseClass' do
+      @rover.is_going_out_of_bounds?.should be_an_instance_of(TrueClass)
+      @rover.turn('L')
+      @rover.is_going_out_of_bounds?.should be_an_instance_of(FalseClass)
+    end
+    # it 'should retu'
+  end
+
   describe '#status' do
     it 'returns a string' do
       @rover.status.should be_an_instance_of(String)

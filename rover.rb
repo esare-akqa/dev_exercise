@@ -24,6 +24,18 @@ class Rover
     @heading.key(@deg).to_s if @heading.has_value? (@deg)
   end
 
+  def is_going_out_of_bounds?
+    if @deg == 90
+      @coords[1] + 1 > @plateau.height
+    elsif @deg == 0
+      @coords[0] + 1 > @plateau.width
+    elsif @deg == 270
+      @coords[1] - 1 < 0
+    elsif @deg == 180
+      @coords[0] - 1 < 0
+    end
+  end
+
   def move
     if @deg == 90 #north
       @coords[1] += 1
@@ -41,7 +53,7 @@ class Rover
   end
 
   def travel(inputs)
-    @last_coords = Array.new(@coords)
+    @last_coords = @coords.dup
     inputs.split('').each do |input|
       input = input.to_sym
       if @turn_dir.has_key? input

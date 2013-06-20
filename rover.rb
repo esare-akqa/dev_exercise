@@ -26,7 +26,7 @@ class Rover
 
   def is_going_out_of_bounds?
     if @deg == 90
-      @coords[1] + 1 > @plateau.height
+      @coords[1] + 1 > @plateau.length
     elsif @deg == 0
       @coords[0] + 1 > @plateau.width
     elsif @deg == 270

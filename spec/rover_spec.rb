@@ -92,7 +92,21 @@ describe Rover do
       @rover.turn('L')
       @rover.is_going_out_of_bounds?.should be_an_instance_of(FalseClass)
     end
-    # it 'should retu'
+    it 'returns True if @rover is at [0, 0] facing "S"' do
+      @rover.is_going_out_of_bounds?.should == true
+    end
+    it 'returns False if @rover is at [0, 0] facing "N"' do
+      @rover.turn('L')
+      @rover.turn('L')
+      @rover.is_going_out_of_bounds?.should == false
+    end
+    it 'returns True if @rover2 is at [5, 5] facing "E"' do
+      @rover2.is_going_out_of_bounds?.should == true
+    end
+    it 'returns False if @rover2 is at [5, 5] facing "W"' do
+      2.times.do { @rover2.turn('L') }
+      @rover2.is_going_out_of_bounds?.should == false
+    end
   end
 
   describe '#status' do

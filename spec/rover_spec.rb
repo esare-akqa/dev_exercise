@@ -104,7 +104,7 @@ describe Rover do
       @rover2.is_going_out_of_bounds?.should == true
     end
     it 'returns False if @rover2 is at [5, 5] facing "W"' do
-      2.times.do { @rover2.turn('L') }
+      2.times { @rover2.turn('L') }
       @rover2.is_going_out_of_bounds?.should == false
     end
   end
@@ -146,17 +146,28 @@ describe Rover do
   end
 
   describe '#travel' do
+    # @plateau = Plateau.new(5, 5)
+    # @rover = Rover.new(1, 2, 'N', @plateau)
+    # @rover2 = Rover.new(3, 3, 'E', @plateau)
     it 'given input: "LM", rover\'s new coords should be at [0, 2]' do
       @rover.travel('LM')
       @rover.coords.should == [0, 2]
     end
-    it 'given input: "RRMMLMRM", rover\'s new coords should be at [2, -1]' do
+    it 'given input: "RRMMLMRM", rover\'s new coords should be at [2, 0]' do
       @rover.travel('RRMMLMRM')
-      @rover.coords.should == [2, -1]
+      @rover.coords.should == [2, 0]
     end
-    it 'given input: "MMMMRMMLMMM", rover\'s new coords should be at [3, 9]' do
+    it 'given input: "RRMMLMRM", rover\'s new coords should NOT be at [2, -1]' do
+      @rover.travel('RRMMLMRM')
+      @rover.coords.should_not == [2, -1]
+    end
+    it 'given input: "MMMMRMMLMMM", rover\'s new coords should be at [3, 5]' do
       @rover.travel('MMMMRMMLMMM')
-      @rover.coords.should == [3, 9]
+      @rover.coords.should == [3, 5]
+    end
+    it 'given input: "MMMMRMMLMMM", rover\'s new coords should NOT be at [3, 9]' do
+      @rover.travel('MMMMRMMLMMM')
+      @rover.coords.should_not == [3, 9]
     end
     it 'given input: "LMLMLMLMM", rover\'s new coords should be at [1, 3]' do
       @rover.travel('LMLMLMLMM')

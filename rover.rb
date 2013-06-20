@@ -59,7 +59,7 @@ class Rover
       if @turn_dir.has_key? input
         turn(input)
       elsif input == :M
-        move
+        move if !is_going_out_of_bounds?
       end
     end
   end

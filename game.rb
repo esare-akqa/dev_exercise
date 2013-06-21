@@ -18,28 +18,6 @@ class Game
     get_rover_travel_input
     get_rover_input
     get_rover_travel_input
-
-    # @inputs['plateau_input'] == get_plateau_input
-    # @inputs['rover1_input'] == get_rover_input
-    # @inputs['rover1_travel_input'] == get_rover_travel_input
-    # @inputs['rover2_input'] == get_rover_input
-    # @inputs['rover2_travel_input'] == get_rover_travel_input
-
-    # @inputs.each do |input|
-    #   if contains_digits?(input) && contains_letters?(input)
-    #     result = input.split(' ')
-    #     x = result[0].to_i
-    #     y = result[1].to_i
-    #     heading = result[2]
-    #     @rovers << Rover.new(x, y, heading, @plateau)
-    #     @current_rover = @rovers.last
-    #   elsif contains_digits?(input)
-    #     width, length = input.split(' ')
-    #     @plateau ||= Plateau.new(width, length)
-    #   elsif contains_letters?(input)
-    #     @current_rover.travel(input)
-    #   end
-    # end
   end
 
   def contains_digits?(str)

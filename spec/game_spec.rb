@@ -124,27 +124,8 @@ describe Game do
     end
 
     it 'returns an instance of Plateau' do
-      # @game.stub(:gets).and_return("20 5\n")
-      # @game.get_plateau_input.should be_an_instance_of String
-      # @game.stub(:prompt_user_input(@game.prompts['plateau_prompt']))).and_return("5 5 \n")
-      # @game.stub(:prompt_user_input).with(@prompts['plateau_prompt']).and_return("5 5")
       @game.stub(:prompt_user_input).with(@prompts['plateau_prompt']).and_return("5 5")
       @game.get_plateau_input.should be_an_instance_of Plateau
-    end
-    it "raises RuntimeError if input is not valid" do
-      # TODO: find out how to test for raising exception inside a method
-      # @game.stub(:gets).and_return("asd;lkfjasld;kfjalsd;fj")
-      # expect { @game.get_plateau_input }.to raise_error(RuntimeError)
-      # @game.stub(:gets).and_return("8798 35")
-      # @game.get_plateau_input.should == "8798 35"
-      # @game.stub(:get_plateau_input).should raise_error(RuntimeError)
-      # @game.get_plateau_input.should raise_error(RuntimeError)
-      # expect { @game.get_plateau_input }.to raise_error(RuntimeError)
-    end
-
-    it "returns input if input is valid" do
-      # @game.stub(:gets).and_return("8798 35\n")
-      # @game.get_plateau_input.should == "8798 35"
     end
   end
 
@@ -152,15 +133,14 @@ describe Game do
     before :each do
       @rover_input = "28 50 W"
       @rover_input2 = "78 49 E"
+      @prompts = {'plateau_prompt' => "Please enter plateau coordinates with 2 digits separated by a space. Ex: '5 17'",
+            'rover_input_prompt' => "Please enter Rover coordinates & heading with 2 positive integers and either N|E|S|W for heading each separated by a space. Ex: '89 12 E'",
+            'rover_travel_prompt' => "Please enter Rover travel inputs with L/R for left/right turn and M to move one coordinate. Ex: 'LMRRMMLM'"}
     end
 
-    it 'returns an instance of String' do
-      @game.stub(:gets).and_return("28 50 W\n")
-      @game.get_rover_input.should be_an_instance_of String
-    end
-    it 'returns input if input is valid' do
-      @game.stub(:gets).and_return("78 49 E\n")
-      @game.get_rover_input.should == @rover_input2
+    it 'returns an instance of Rover' do
+      @game.stub(:prompt_user_input).with(@prompts['rover_input_prompt']).and_return("20 50 W")
+      @game.get_rover_input.should be_an_instance_of Rover
     end
   end
 
@@ -168,15 +148,17 @@ describe Game do
     before :each do
       @rover_travel_input = "MMMRMLRRRM\n"
       @rover_travel_input2 = "RRMLMRM"
+      @prompts = {'plateau_prompt' => "Please enter plateau coordinates with 2 digits separated by a space. Ex: '5 17'",
+            'rover_input_prompt' => "Please enter Rover coordinates & heading with 2 positive integers and either N|E|S|W for heading each separated by a space. Ex: '89 12 E'",
+            'rover_travel_prompt' => "Please enter Rover travel inputs with L/R for left/right turn and M to move one coordinate. Ex: 'LMRRMMLM'"}
+      @plateau = Plateau.new(5, 5)
+      @rover = Rover.new(1, 2, 'N', @plateau)
     end
 
-    it 'returns an instance of String' do
-      @game.stub(:gets).and_return("MMMRMLRRRM\n")
-      @game.get_rover_travel_input.should be_an_instance_of String
-    end
-    it 'returns input if input is valid' do
-      @game.stub(:gets).and_return("RRMLMRM\n")
-      @game.get_rover_travel_input.should == @rover_travel_input2
+    it 'returns an instance of Array' do
+      @game.stub(:prompt_user_input).with(@prompts['rover_travel_prompt']).and_return("MMMRMLRRRM")
+      @game.instance_variable_set("@current_rover", @rover)
+      @game.get_rover_travel_input.should be_an_instance_of Array
     end
   end
 
@@ -197,8 +179,6 @@ describe Game do
   describe "#test_error" do
     it "raises RunTimeError" do
       expect { @game.test_error }.to raise_error(RuntimeError)
-      # @game.stub!(:test_error).should raise_error(RuntimeError)
-      # @game.test_error.and_raise(RuntimeError)
     end
   end
 
